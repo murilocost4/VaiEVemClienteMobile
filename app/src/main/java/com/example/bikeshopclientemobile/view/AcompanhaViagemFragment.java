@@ -111,8 +111,7 @@ public class AcompanhaViagemFragment extends Fragment {
         public void onClickSp(View view, int position, StatusPassageiro sp) {
             // mostrando as informações da bike clicada
             Toast.makeText(getContext(), "Nome: " + sp.getPassageiro().getNomeUsuario() +
-                    ", Endereco: " + sp.getPassageiro().getEndereco() +
-                    ", Data: " + v.getData(), Toast.LENGTH_SHORT).show();
+                    ", Endereco: " + sp.getPassageiro().getEndereco(), Toast.LENGTH_SHORT).show();
         }
     };
 

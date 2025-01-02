@@ -1,49 +1,63 @@
 package com.example.bikeshopclientemobile.adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bikeshopclientemobile.databinding.ItemListRowBinding;
+import com.example.bikeshopclientemobile.databinding.ItemListRowSpBinding;
 
 import modelDominio.StatusPassageiro;
-import modelDominio.Viagem;
+import com.example.bikeshopclientemobile.controller.ConexaoController;
 
 import java.util.List;
 
 public class StatusPassageiroAdapter extends RecyclerView.Adapter<StatusPassageiroAdapter.MyViewHolder> {
     private List<StatusPassageiro> listaSP;
     private SpOnClickListener spOnClickListener;
+    private ConexaoController conexaoController;
 
-    public StatusPassageiroAdapter(List<StatusPassageiro> listaSP, SpOnClickListener viagemOnClickListener) {
+    public StatusPassageiroAdapter(List<StatusPassageiro> listaSP, SpOnClickListener spOnClickListener, ConexaoController conexaoController) {
         this.listaSP = listaSP;
         this.spOnClickListener = spOnClickListener;
+        this.conexaoController = conexaoController;
     }
 
     @Override
     public StatusPassageiroAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        ItemListRowBinding itemListRowBinding = ItemListRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
-        return new MyViewHolder(itemListRowBinding);
+        ItemListRowSpBinding itemListRowSpBinding = ItemListRowSpBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        return new MyViewHolder(itemListRowSpBinding);
     }
 
     @Override
     public void onBindViewHolder(final StatusPassageiroAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         StatusPassageiro sp = listaSP.get(position);
-        holder.itemListRowBinding.tvSpNome.setText(sp.getPassageiro().getNomeUsuario());
-        holder.itemListRowBinding.tvSpEndereco.setText(sp.getPassageiro().getEndereco());
-        /* CUIDADO: .setText() precisa sempre de String. Se for outro tipo de dado, deve ser feita a conversão com o String.valueOf() */
+        holder.itemListRowSpBinding.tvSpNome.setText(sp.getPassageiro().getNomeUsuario());
+        holder.itemListRowSpBinding.tvSpEndereco.setText(sp.getPassageiro().getEndereco());
 
-        // tratando o clique no item
-        if (spOnClickListener != null) {
-            holder.itemListRowBinding.getRoot().setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    spOnClickListener.onClickSp(holder.itemView, position, sp);
+        // Configurando clique do botão "Presente"
+        holder.itemListRowSpBinding.bPresente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conexaoController.selecionaEmbarcou(sp);
+                if (spOnClickListener != null) {
+                    spOnClickListener.onClickSp(v, position, sp);
                 }
-            });
-        }
+            }
+        });
+
+        // Configurando clique do botão "Ausente"
+        holder.itemListRowSpBinding.bAusente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                conexaoController.selecionaAusente(sp);
+                if (spOnClickListener != null) {
+                    spOnClickListener.onClickSp(v, position, sp);
+                }
+            }
+        });
     }
 
     @Override
@@ -51,19 +65,16 @@ public class StatusPassageiroAdapter extends RecyclerView.Adapter<StatusPassagei
         return listaSP.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public  ItemListRowBinding itemListRowBinding;
-        public MyViewHolder(ItemListRowBinding itemListRowBinding) {
-            super(itemListRowBinding.getRoot());
-            this.itemListRowBinding = itemListRowBinding;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        public final ItemListRowSpBinding itemListRowSpBinding;
+
+        public MyViewHolder(ItemListRowSpBinding itemListRowSpBinding) {
+            super(itemListRowSpBinding.getRoot());
+            this.itemListRowSpBinding = itemListRowSpBinding;
         }
     }
 
     public interface SpOnClickListener {
-        public void onClickSp(View view, int position, StatusPassageiro sp);
+        void onClickSp(View view, int position, StatusPassageiro sp);
     }
-
 }
-
-
-
