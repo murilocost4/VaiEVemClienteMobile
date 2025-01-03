@@ -23,6 +23,7 @@ import com.example.bikeshopclientemobile.databinding.FragmentVisualizacaoViagemB
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import modelDominio.Viagem;
 import modelDominio.Usuario;
@@ -65,7 +66,7 @@ public class VisualizacaoViagemFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            // chamando o método responsável por listar as bikes
+                            // chamando o método responsável por listar as viages
                             atualizaListagem();
                         }
                     });

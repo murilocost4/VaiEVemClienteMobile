@@ -137,18 +137,36 @@ public class ConexaoController {
     }
 
     public ArrayList<Viagem> viagemCondutorLista(int codUsuario) {
-        ArrayList<Viagem> listaViagensCondutor;
+        ArrayList<Viagem> listaViagens;
+        String mensagem;
         try {
             informacoesViewModel.getOutputStream().writeObject("ViagemCondutorLista");
-            listaViagensCondutor = (ArrayList<Viagem>) informacoesViewModel.getInputStream().readObject();
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeInt(codUsuario-1);
+            listaViagens = (ArrayList<Viagem>) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
-            listaViagensCondutor = null;
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
+            listaViagens = null;
         } catch (ClassNotFoundException classe) {
-            Log.e("BikeShop", "Erro: " + classe.getMessage());
-            listaViagensCondutor = null;
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            listaViagens = null;
         }
-        return listaViagensCondutor;
+        return listaViagens;
+    }
+
+    public ArrayList<Viagem> viagemLista() {
+        ArrayList<Viagem> listaViagens;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("ViagemLista");
+            listaViagens = (ArrayList<Viagem>) informacoesViewModel.getInputStream().readObject();
+        } catch (IOException ioe) {
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
+            listaViagens = null;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            listaViagens = null;
+        }
+        return listaViagens;
     }
 
     public ArrayList<StatusPassageiro> spLista(Viagem v) {
