@@ -99,7 +99,7 @@ public class AcompanhaViagemFragment extends Fragment {
     }
 
     public void atualizaListagem() {
-        spAdapter = new StatusPassageiroAdapter(listaSP, trataCliqueItem);
+        spAdapter = new StatusPassageiroAdapter(listaSP, trataCliqueItem, ccont);
         binding.rvVisualizaPassageiros.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvVisualizaPassageiros.setItemAnimator(new DefaultItemAnimator());
         binding.rvVisualizaPassageiros.setAdapter(spAdapter);
