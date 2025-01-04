@@ -51,10 +51,10 @@ public class ConexaoController {
             informacoesViewModel.getOutputStream().writeObject(usuario);
             usuarioLogado = (Usuario) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             usuarioLogado = null;
         } catch (ClassNotFoundException classe) {
-            Log.e("BikeShop", "Erro: " + classe.getMessage());
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
             usuarioLogado = null;
         }
         return usuarioLogado;
@@ -107,10 +107,10 @@ public class ConexaoController {
             informacoesViewModel.getOutputStream().writeObject(v);
             resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            Log.e("VaiEVem","Erro de io: " + ioe.getMessage());
             resultado = false;
         } catch (ClassNotFoundException classe) {
-            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            Log.e("VaiEVem", "Erro ao encontrar classe: " + classe.getMessage());
             resultado = false;
         }
 
@@ -178,10 +178,10 @@ public class ConexaoController {
             informacoesViewModel.getOutputStream().writeInt(v.getTrip_id());
             listaSp = (ArrayList<StatusPassageiro>) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             listaSp = null;
         } catch (ClassNotFoundException classe) {
-            Log.e("BikeShop", "Erro: " + classe.getMessage());
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
             listaSp = null;
         }
         return listaSp;
