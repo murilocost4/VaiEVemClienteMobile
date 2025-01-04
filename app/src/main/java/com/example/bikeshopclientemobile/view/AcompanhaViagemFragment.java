@@ -10,6 +10,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,7 @@ public class AcompanhaViagemFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_menu, container, false);
         binding = FragmentAcompanhaViagemBinding.inflate(inflater, container, false);
@@ -55,8 +57,29 @@ public class AcompanhaViagemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // obtendo a instância do viewModel
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
-        binding.tvOrigem.setText(v.getOrigem());
-        binding.tvDestino.setText(v.getDestino());
+
+
+        if (getArguments() != null) {
+            v = (Viagem) getArguments().getSerializable("viagem");
+            Log.d("AcompanhaViagemFragment", "Viagem ID recebido: " + v.getTrip_id());
+
+            if (v.getTrip_id() != -1) {
+                // Obtenha a viagem usando o ID
+
+                if (v != null) {
+                    // Use os dados da viagem
+                    binding.tvOrigem.setText(v.getOrigem());
+                    binding.tvDestino.setText(v.getDestino());
+                    Log.d("AcompanhaViagemFragment", "Origem: " + v.getOrigem());
+                } else {
+                    Log.e("AcompanhaViagemFragment", "Viagem não encontrada para o ID: " + v.getTrip_id());
+                }
+            } else {
+                Log.e("AcompanhaViagemFragment", "ID da viagem é inválido!");
+            }
+        } else {
+            Log.e("AcompanhaViagemFragment", "Nenhum argumento recebido!");
+        }
 
         // programando o clique nos botões
         binding.bIniciar.setOnClickListener(new View.OnClickListener() {

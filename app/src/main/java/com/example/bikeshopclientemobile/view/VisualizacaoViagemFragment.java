@@ -59,7 +59,7 @@ public class VisualizacaoViagemFragment extends Fragment {
 
                 // instanciando e invocando o conexão controller
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                listaViagens = conexaoController.viagemCondutorLista(usLogado.getCodUsuario());
+                listaViagens = conexaoController.viagemLista();
                 // verificando o resultado para depois sincronizar as threads
                 if (listaViagens != null) {
                     // sincronizando as threads para listar as bikes
@@ -87,16 +87,14 @@ public class VisualizacaoViagemFragment extends Fragment {
     ViagemAdapter.ViagemOnClickListener trataCliqueItem = new ViagemAdapter.ViagemOnClickListener() {
         @Override
         public void onClickViagem(View view, int position, Viagem v) {
-
-            Navigation.findNavController(view).navigate(R.id.action_visualizacaoBikeFragment_to_acompanhaViagemFragment);
-
-            // mostrando as informações da bike clicada
-            /*Toast.makeText(getContext(), "Origem: " + v.getOrigem() +
-                                        ", Destino: " + v.getDestino() +
-                                        ", Data: " + v.getData() +
-                                        ", Condutor: " + v.getCodCondutor(), Toast.LENGTH_SHORT).show();*/
+            Viagem viagemSelecionada = listaViagens.get(position); // Obtenha a viagem selecionada
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("viagem", viagemSelecionada);
+            Navigation.findNavController(view).navigate(R.id.action_visualizacaoBikeFragment_to_acompanhaViagemFragment, bundle);
         }
     };
+
+
 
     @Override
     public void onDestroyView() {

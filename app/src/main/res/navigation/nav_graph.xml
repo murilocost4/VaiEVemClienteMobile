@@ -35,5 +35,9 @@
         android:id="@+id/acompanhaViagemFragment"
         android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemFragment"
         android:label="fragment_acompanha_viagem"
-        tools:layout="@layout/fragment_acompanha_viagem" />
+        tools:layout="@layout/fragment_acompanha_viagem">
+        <argument
+            android:name="viagem"
+            app:argType="java.io.Serializable" />
+    </fragment>
 </navigation>

@@ -171,8 +171,11 @@ public class ConexaoController {
 
     public ArrayList<StatusPassageiro> spLista(Viagem v) {
         ArrayList<StatusPassageiro> listaSp;
+        String mensagem;
         try {
             informacoesViewModel.getOutputStream().writeObject("StatusPassageiroLista");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeInt(v.getTrip_id());
             listaSp = (ArrayList<StatusPassageiro>) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
             Log.e("BikeShop", "Erro: " + ioe.getMessage());
