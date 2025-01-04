@@ -1,5 +1,7 @@
 package com.example.bikeshopclientemobile.view;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +13,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.bikeshopclientemobile.R;
@@ -25,12 +28,22 @@ public class LoginFragment extends Fragment {
     InformacoesViewModel informacoesViewModel;
     boolean resultado;
     Usuario usuarioLogado;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_login, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate o layout usando o ViewBinding
         binding = FragmentLoginBinding.inflate(inflater, container, false);
+
+        // Configurar o clique no TextView
+        TextView forgotPassword = binding.tvForgotPassword; // Use o binding para acessar a View
+        forgotPassword.setOnClickListener(v -> {
+            // Abrir o WhatsApp com o número desejado
+            String url = "https://wa.me/5551999281148?text=Oii%2C%20esqueci%20minha%20senha.%20Voc%C3%AA%20pode%20me%20ajudar%3F%20";
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        });
+
+        // Retorna a raiz da View do binding
         return binding.getRoot();
     }
 
@@ -113,18 +126,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        binding.bLoginCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                limpaCampos();
-            }
-        });
     }
 
-    public void limpaCampos() {
-        binding.etEmailUsuario.setText("");
-        binding.etLoginSenha.setText("");
-    }
 
     @Override
     public void onDestroyView() {

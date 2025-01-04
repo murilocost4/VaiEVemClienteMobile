@@ -4,36 +4,62 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
     tools:context=".view.LoginFragment">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_bus"
+        android:contentDescription="Ícone de ônibus"
+        android:layout_marginBottom="16dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login now"
+        android:textColor="@color/dark_gray"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvEmailUsuario"
-        android:text="Email: "/>
+        android:layout_marginBottom="24dp"
+        android:text="Bem-vindo de volta"
+        android:textSize="16sp" />
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etEmailUsuario"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLoginSenha"
-        android:text="Senha: "/>
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="16dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/etLoginSenha"
-        android:inputType="textPassword"/>
+        android:hint="Senha"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="8dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvForgotPassword"
+        android:text="Esqueceu sua senha?"
+        android:autoLink="web"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_marginBottom="24dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bLoginEntrar"
-        android:text="Entrar"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bLoginCancelar"
-        android:text="Cancelar"/>
+        android:text="Login"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"/>
+
 </LinearLayout>

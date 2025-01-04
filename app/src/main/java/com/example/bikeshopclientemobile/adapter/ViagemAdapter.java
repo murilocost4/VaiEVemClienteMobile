@@ -30,8 +30,9 @@ public class ViagemAdapter extends RecyclerView.Adapter<ViagemAdapter.MyViewHold
     @Override
     public void onBindViewHolder(final ViagemAdapter.MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         Viagem v = listaViagens.get(position);
-        holder.itemListRowBinding.tvViagemModelo.setText(v.getDestino());
+        holder.itemListRowBinding.tvViagemDestino.setText(v.getDestino());
         holder.itemListRowBinding.tvViagemData.setText(v.getData());
+        holder.itemListRowBinding.tvViagemStatus.setText(v.getStatus_viagem());
         /* CUIDADO: .setText() precisa sempre de String. Se for outro tipo de dado, deve ser feita a conversão com o String.valueOf() */
 
         // tratando o clique no item

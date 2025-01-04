@@ -40,4 +40,12 @@
             android:name="viagem"
             app:argType="java.io.Serializable" />
     </fragment>
+    <fragment
+        android:id="@+id/splashscreen"
+        android:name="com.example.bikeshopclientemobile.view.Splashscreen"
+        android:label="Splashscreen" >
+        <action
+            android:id="@+id/acao_splashscreen_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

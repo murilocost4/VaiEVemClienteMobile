@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".view.VisualizacaoViagemFragment">
 
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Viagens"
+        android:textColor="@color/green"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/tvSubtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confira as viagens cadastradas"
+        android:textSize="16sp"
+        android:layout_below="@id/tvTitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVisualizaViagens"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvVisualizaViagens"
         android:scrollbars="vertical"
+        android:layout_below="@id/tvSubtitulo"
         tools:listitem="@layout/item_list_row"/>
-
-</LinearLayout>
+</RelativeLayout>

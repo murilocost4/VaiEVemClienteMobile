@@ -3,52 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@drawable/rounded_corner"
+    android:layout_marginBottom="8dp">
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="6dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
         app:cardUseCompatPadding="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:padding="16dp"
             android:orientation="vertical">
+
             <TextView
+                android:id="@+id/tvSpNome"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvSpNome"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#000"
-                android:text="Nome"/>
+                android:textColor="@android:color/black"
+                android:text="Nome do Passageiro"/>
+
             <TextView
+                android:id="@+id/tvSpEndereco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvSpEndereco"
-                android:text="Endereco"/>
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="Endereço do Passageiro"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end"
+                android:layout_marginTop="16dp">
+
+                <Button
+                    android:id="@+id/bPresente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Embarcou"
+                    android:backgroundTint="@color/green"
+                    android:textColor="@android:color/white"
+                    android:layout_marginEnd="8dp"/>
+
+                <Button
+                    android:id="@+id/bAusente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ausente"
+                    android:backgroundTint="@color/green"
+                    android:textColor="@android:color/white"/>
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical"
-            android:layout_marginLeft="260dp">
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Presente"
-                android:id="@+id/bPresente"/>
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Ausente"
-                android:id="@+id/bAusente"/>
-        </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
 </LinearLayout>

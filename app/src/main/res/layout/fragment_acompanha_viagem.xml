@@ -4,35 +4,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="16dp"
     tools:context=".view.AcompanhaViagemFragment">
 
+    <!-- Título da Tela -->
     <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Detalhes da Viagem"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"/>
+
+    <!-- Informações da Viagem -->
+    <TextView
+        android:id="@+id/tvOrigem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Origem: "
-        android:id="@+id/tvOrigem"/>
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="26dp"/>
+
     <TextView
+        android:id="@+id/tvDestino"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destino: "
-        android:id="@+id/tvDestino"/>
-    <Button
+        android:text="Destino:"
+        android:textSize="18sp"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Botões Iniciar e Finalizar -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bIniciar"
-        android:text="Iniciar"/>
-    <Button
-        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/bIniciar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Iniciar"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/bFinalizar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Finalizar"
+            android:backgroundTint="@color/green"
+            android:textColor="@android:color/white"/>
+    </LinearLayout>
+
+    <!-- Título Passageiros -->
+    <TextView
+        android:id="@+id/tvPassageiros"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bFinalizar"
-        android:text="Finalizar"/>
+        android:text="Passageiros"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginBottom="8dp"/>
 
-
+    <!-- RecyclerView para listar os Passageiros -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVisualizaPassageiros"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/rvVisualizaPassageiros"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_list_row"/>
-
+        tools:listitem="@layout/item_list_row_sp"/>
 </LinearLayout>
