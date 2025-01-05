@@ -1,20 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package modelDominio;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-/**
- *
- * @author murilocost4
- */
 public class Viagem implements Serializable{
 
     private static final long serialVersionUID = 123456789L;
@@ -121,7 +110,7 @@ public class Viagem implements Serializable{
         return codCondutor;
     }
 
-    public void setCodCondutor(int codPassageiro) {
+    public void setCodCondutor(int codCondutor) {
         this.codCondutor = codCondutor;
     }
 
