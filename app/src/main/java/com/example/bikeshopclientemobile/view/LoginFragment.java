@@ -55,13 +55,15 @@ public class LoginFragment extends Fragment {
         // obtendo a instância do viewModel
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
 
+
+
         // criando a thread para a criação da conexão socket com o servidor
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 // declarando e instanciando o controller do socket
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                resultado = conexaoController.criaConexaoServidor("192.168.210.32", 12345);
+                resultado = conexaoController.criaConexaoServidor("192.168.2.113", 12345);
                 // sincronizando as threads para mostrar o resultado
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -93,7 +95,7 @@ public class LoginFragment extends Fragment {
                         String senhaCriptografada = Criptografia.criptografarSenha(senha);
 
                         // instanciando o usuario que está se logando
-                        usuarioLogado = new Usuario(usuario, senha);
+                        usuarioLogado = new Usuario(usuario, senhaCriptografada);
 
 
                         // criando a Thread para autenticar o usuário no servidor

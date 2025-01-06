@@ -45,6 +45,10 @@ public class MenuFragment extends Fragment {
             }
         });
 
+        binding.voltar.setOnClickListener(event -> {
+            Navigation.findNavController(view).navigate(R.id.acao_menuFragment_to_loginFragment);
+        });
+
     }
 
     @Override

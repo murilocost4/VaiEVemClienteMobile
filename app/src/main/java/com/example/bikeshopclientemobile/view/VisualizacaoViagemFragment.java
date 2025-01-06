@@ -43,6 +43,7 @@ public class VisualizacaoViagemFragment extends Fragment {
         //return inflater.inflate(R.layout.fragment_visualizacao_bike, container, false);
         binding = FragmentVisualizacaoViagemBinding.inflate(inflater, container, false);
         return binding.getRoot();
+
     }
 
     @Override
@@ -53,6 +54,10 @@ public class VisualizacaoViagemFragment extends Fragment {
 
         // criando a thread para obtenção da lista
         atualizaListagem();
+
+        binding.voltar.setOnClickListener(event -> {
+            Navigation.findNavController(view).navigate(R.id.acao_visualizacaoBikeFragment_to_menuFragment);
+        });
     }
 
     public void atualizaListagem() {

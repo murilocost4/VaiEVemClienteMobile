@@ -21,6 +21,9 @@
         <action
             android:id="@+id/acao_MenuFragment_VisualizacaoBikeFragment"
             app:destination="@id/visualizacaoBikeFragment" />
+        <action
+            android:id="@+id/acao_menuFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizacaoBikeFragment"
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_visualizacaoBikeFragment_to_acompanhaViagemFragment"
             app:destination="@id/acompanhaViagemFragment" />
+        <action
+            android:id="@+id/acao_visualizacaoBikeFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
     <fragment
         android:id="@+id/acompanhaViagemFragment"
