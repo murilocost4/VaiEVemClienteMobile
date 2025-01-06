@@ -9,8 +9,10 @@ import androidx.core.util.Consumer;
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
@@ -27,7 +29,6 @@ import modelDominio.Usuario;
 
 public class ConexaoController {
     private InformacoesViewModel informacoesViewModel;
-
     public ConexaoController(InformacoesViewModel informacoesViewModel) {
         this.informacoesViewModel = informacoesViewModel;
     }
@@ -104,48 +105,57 @@ public class ConexaoController {
 
         return resultado;
     }
-
-    public boolean iniciarViagem(int codViagem) {
-        boolean resultado;
-        String mensagem;
-        try {
-            informacoesViewModel.getOutputStream().writeObject("viagemIniciar");
-            Log.d("Teste", "Comando viagemIniciar");
-            mensagem = (String) informacoesViewModel.getInputStream().readObject();
-            Log.d("Teste", "Mensagem recebida");
-            informacoesViewModel.getOutputStream().writeInt(codViagem);
-            Log.d("Teste", "Codigo enviado");
-            resultado = (boolean) informacoesViewModel.getInputStream().readObject();
-            Log.d("Teste", "Resultado recebido");
-        } catch (IOException ioe) {
-            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
-            resultado = false;
-        } catch (ClassNotFoundException classe) {
-            Log.e("VaiEVem", "Erro: " + classe.getMessage());
-            resultado = false;
-        }
-        return resultado;
+    public void iniciarViagem(int codViagem, Callback<Boolean> callback) {
+        new Thread(() -> {
+            int resultado;
+            try {
+                informacoesViewModel.getOutputStream().writeObject("viagemIniciar");
+                informacoesViewModel.getOutputStream().flush();
+                Log.d("Teste", "Comando viagemIniciar enviado.");
+                informacoesViewModel.getOutputStream().writeInt(codViagem);
+                informacoesViewModel.getOutputStream().flush();
+                Log.d("Teste", "Codigo da viagem enviado: " + codViagem);
+                Log.d("Teste", "Codigo enviado");
+                resultado = informacoesViewModel.getInputStream().readInt();
+                Log.d("Teste", "Resultado recebido: "+resultado);
+            } catch (IOException e) {
+                e.printStackTrace();
+                resultado = 0;
+            }
+            boolean finalResultado = (resultado == 1) ? true : false;
+            // Update UI on the main thread
+            new Handler(Looper.getMainLooper()).post(() -> callback.onResult(finalResultado));
+        }).start();
     }
 
 
-
-    public boolean viagemFinalizar(Viagem v) {
-        boolean resultado;
-        String mensagem;
-        try {
-            informacoesViewModel.getOutputStream().writeObject("viagemFinalizar");
-            mensagem = (String) informacoesViewModel.getInputStream().readObject();
-            informacoesViewModel.getOutputStream().writeObject(v);
-            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
-        } catch (IOException ioe) {
-            Log.e("VaiEVem","Erro: " + ioe.getMessage());
-            resultado = false;
-        } catch (ClassNotFoundException classe) {
-            Log.e("VaiEVem", "Erro: " + classe.getMessage());
-            resultado = false;
-        }
-
-        return resultado;
+    public void finalizarViagem(int codViagem, Callback<Boolean> callback) {
+        new Thread(() -> {
+            int resultado;
+            try {
+                informacoesViewModel.getOutputStream().writeObject("viagemFinalizar");
+                informacoesViewModel.getOutputStream().flush();
+                Log.d("Teste", "Comando viagemFinalizar");
+                String mensagem = (String) informacoesViewModel.getInputStream().readObject().toString();
+                System.out.println(mensagem);
+                Log.d("Teste", "Mensagem recebida");
+                informacoesViewModel.getOutputStream().writeInt(codViagem);
+                informacoesViewModel.getOutputStream().flush();
+                Log.d("Teste", "Codigo enviado");
+                resultado = (int) informacoesViewModel.getInputStream().readInt();
+                Log.d("Teste", "Resultado recebido");
+            } catch (IOException | ClassNotFoundException e) {
+                Log.e("VaiEVem", "Erro: " + e.getMessage());
+                resultado = 0;
+            }
+            boolean finalResultado = (resultado == 1) ? true : false;
+            // Update UI on the main thread
+            new Handler(Looper.getMainLooper()).post(() -> callback.onResult(finalResultado));
+        }).start();
+    }
+    // Define a callback interface
+    public interface Callback<T> {
+        void onResult(T result);
     }
 
     public ArrayList<Viagem> viagemCondutorLista(int codUsuario) {

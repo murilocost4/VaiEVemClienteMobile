@@ -39,6 +39,9 @@
         <argument
             android:name="viagem"
             app:argType="java.io.Serializable" />
+        <action
+            android:id="@+id/action_acompanhaViagemFragment_to_visualizacaoBikeFragment"
+            app:destination="@id/visualizacaoBikeFragment" />
     </fragment>
     <fragment
         android:id="@+id/splashscreen"

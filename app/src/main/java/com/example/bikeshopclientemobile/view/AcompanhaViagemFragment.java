@@ -85,70 +85,37 @@ public class AcompanhaViagemFragment extends Fragment {
         }
 
         // programando o clique nos botões
-        /*binding.bIniciar.setOnClickListener(view1 -> {
-            new Thread(() -> {
-                if (ccont != null) {
-                    boolean resultado = ccont.viagemIniciar(v);
-                    getActivity().runOnUiThread(() -> {
-                        if (resultado) {
-                            Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    Log.e("AcompanhaViagemFragment", "ConexaoController está nulo!");
-                }
-            }).start();
-        });*/
-
         binding.bIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean resultado = ccont.iniciarViagem(v.getTrip_id());
-                getActivity().runOnUiThread(() -> {
-                    if (resultado) {
+                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+
+                conexaoController.iniciarViagem(v.getTrip_id(), finalResultado -> {
+                    if (finalResultado) {
                         Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Erro ao iniciar viagem.", Toast.LENGTH_SHORT).show();
                     }
                 });
+
             }
         });
 
-        /*binding.bIniciar.setOnClickListener(new View.OnClickListener() {
+        binding.bFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                boolean resultado = ccont.viagemIniciar(v.getTrip_id());
-                getActivity().runOnUiThread(() -> {
+                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+
+                conexaoController.finalizarViagem(v.getTrip_id(), finalResultado -> {
                     if (resultado) {
-                        Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Erro ao finalizar viagem.", Toast.LENGTH_SHORT).show();
                     }
                 });
+
             }
-        });*/
-
-
-        /*binding.bFinalizar.setOnClickListener(view1 -> {
-            new Thread(() -> {
-                if (ccont != null) {
-                    boolean resultado = ccont.viagemFinalizar(v);
-                    getActivity().runOnUiThread(() -> {
-                        if (resultado) {
-                            Toast.makeText(getContext(), "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), "Erro ao finalizar a viagem.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                } else {
-                    Log.e("AcompanhaViagemFragment", "ConexaoController está nulo!");
-                }
-            }).start();
-        });*/
-
-
+        });
 
         Thread thread = new Thread(new Runnable() {
             @Override

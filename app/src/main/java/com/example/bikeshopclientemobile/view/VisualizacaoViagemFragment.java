@@ -54,7 +54,6 @@ public class VisualizacaoViagemFragment extends Fragment {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-
                 Usuario usLogado = informacoesViewModel.getUsuarioLogado();
 
                 // instanciando e invocando o conexão controller
@@ -77,11 +76,17 @@ public class VisualizacaoViagemFragment extends Fragment {
     }
 
     public void atualizaListagem() {
-        viagemAdapter = new ViagemAdapter(listaViagens, trataCliqueItem);
-        binding.rvVisualizaViagens.setLayoutManager(new LinearLayoutManager(getContext()));
-        binding.rvVisualizaViagens.setItemAnimator(new DefaultItemAnimator());
-        binding.rvVisualizaViagens.setAdapter(viagemAdapter);
+        if (viagemAdapter == null) {
+            viagemAdapter = new ViagemAdapter(listaViagens, trataCliqueItem);
+            binding.rvVisualizaViagens.setLayoutManager(new LinearLayoutManager(getContext()));
+            binding.rvVisualizaViagens.setItemAnimator(new DefaultItemAnimator());
+            binding.rvVisualizaViagens.setAdapter(viagemAdapter);
+        } else {
+            viagemAdapter.notifyDataSetChanged();
+        }
 
+        // Ensure the RecyclerView is ready
+        binding.rvVisualizaViagens.setVisibility(View.VISIBLE);
     }
 
     ViagemAdapter.ViagemOnClickListener trataCliqueItem = new ViagemAdapter.ViagemOnClickListener() {

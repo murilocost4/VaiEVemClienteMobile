@@ -25,8 +25,8 @@ public class InformacoesViewModel extends ViewModel {
 
         if (in != null && out != null) {
             Log.d("InformacoesViewModel", "Inicializando InputStream e OutputStream.");
-            mIn.setValue(in);
-            mOut.setValue(out);
+            mIn.postValue(in);
+            mOut.postValue(out);
         } else {
             Log.e("InformacoesViewModel", "InputStream ou OutputStream é nulo.");
         }
@@ -46,7 +46,7 @@ public class InformacoesViewModel extends ViewModel {
         }
 
         // Atualiza o usuário logado
-        mUsuarioLogado.setValue(usuarioLogado);
+        mUsuarioLogado.postValue(usuarioLogado);
     }
 
     // Acessa o InputStream
