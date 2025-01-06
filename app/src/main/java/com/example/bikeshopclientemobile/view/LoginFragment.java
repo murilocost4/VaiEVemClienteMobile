@@ -61,7 +61,7 @@ public class LoginFragment extends Fragment {
             public void run() {
                 // declarando e instanciando o controller do socket
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                resultado = conexaoController.criaConexaoServidor("192.168.3.85", 12345);
+                resultado = conexaoController.criaConexaoServidor("192.168.1.67", 12345);
                 // sincronizando as threads para mostrar o resultado
                 getActivity().runOnUiThread(new Runnable() {
                     @Override

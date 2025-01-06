@@ -51,6 +51,10 @@ public class VisualizacaoViagemFragment extends Fragment {
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
 
         // criando a thread para obtenção da lista
+        atualizaListagem();
+    }
+
+    public void atualizaListagem() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -66,24 +70,20 @@ public class VisualizacaoViagemFragment extends Fragment {
                         @Override
                         public void run() {
                             // chamando o método responsável por listar as viages
-                            atualizaListagem();
+                            if (viagemAdapter == null) {
+                                viagemAdapter = new ViagemAdapter(listaViagens, trataCliqueItem);
+                                binding.rvVisualizaViagens.setLayoutManager(new LinearLayoutManager(getContext()));
+                                binding.rvVisualizaViagens.setItemAnimator(new DefaultItemAnimator());
+                                binding.rvVisualizaViagens.setAdapter(viagemAdapter);
+                            } else {
+                                viagemAdapter.notifyDataSetChanged();
+                            }
                         }
                     });
                 }
             }
         });
         thread.start();
-    }
-
-    public void atualizaListagem() {
-        if (viagemAdapter == null) {
-            viagemAdapter = new ViagemAdapter(listaViagens, trataCliqueItem);
-            binding.rvVisualizaViagens.setLayoutManager(new LinearLayoutManager(getContext()));
-            binding.rvVisualizaViagens.setItemAnimator(new DefaultItemAnimator());
-            binding.rvVisualizaViagens.setAdapter(viagemAdapter);
-        } else {
-            viagemAdapter.notifyDataSetChanged();
-        }
 
         // Ensure the RecyclerView is ready
         binding.rvVisualizaViagens.setVisibility(View.VISIBLE);

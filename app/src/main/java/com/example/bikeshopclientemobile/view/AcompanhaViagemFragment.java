@@ -59,6 +59,10 @@ public class AcompanhaViagemFragment extends Fragment {
         // obtendo a instância do viewModel
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
 
+        binding.voltar.setOnClickListener(event -> {
+            Navigation.findNavController(view).navigate(R.id.action_acompanhaViagemFragment_to_visualizacaoBikeFragment);
+        });
+
         ccont = new ConexaoController(informacoesViewModel);
 
         if (getArguments() != null) {
@@ -133,7 +137,7 @@ public class AcompanhaViagemFragment extends Fragment {
                 thread.start();
             }
         });
-
+        /*
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -157,9 +161,9 @@ public class AcompanhaViagemFragment extends Fragment {
             }
         });
         thread.start();
+*/
 
     }
-
     public void atualizaListagem() {
         spAdapter = new StatusPassageiroAdapter(listaSP, trataCliqueItem, ccont);
         binding.rvVisualizaPassageiros.setLayoutManager(new LinearLayoutManager(getContext()));

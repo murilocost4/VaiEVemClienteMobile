@@ -83,9 +83,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvVisualizaPassageiros"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="371dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/item_list_row_sp"/>
+        tools:listitem="@layout/item_list_row_sp" />
+
+    <Button
+        android:id="@+id/voltar"
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:text="Voltar"
+        android:background="@color/dark_gray"/>
 
 
 </LinearLayout>
