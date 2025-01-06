@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +63,8 @@ public class VisualizacaoViagemFragment extends Fragment {
 
                 // instanciando e invocando o conexão controller
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                listaViagens = conexaoController.viagemLista();
+                listaViagens = conexaoController.viagemCondutorLista(usLogado);
+                System.out.println("Conjdutor: "+usLogado.getCodUsuario());
                 // verificando o resultado para depois sincronizar as threads
                 if (listaViagens != null) {
                     // sincronizando as threads para listar as bikes

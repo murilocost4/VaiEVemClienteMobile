@@ -21,23 +21,62 @@
         android:layout_marginTop="36dp"/>
 
     <!-- Informações da Viagem -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:id="@+id/tvLabelOrigem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Origem: "
+            android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="26dp"/>
+        <TextView
+            android:id="@+id/tvOrigem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Origem: "
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="26dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp">
+        <TextView
+            android:id="@+id/tvLabelDestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destino: "
+            android:textSize="18sp"
+            android:textColor="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/tvDestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Destino:"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"/>
+
+    </LinearLayout>
+
     <TextView
-        android:id="@+id/tvOrigem"
+        android:id="@+id/tvStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Origem: "
+        android:text="Status:"
         android:textSize="18sp"
-        android:textColor="@android:color/darker_gray"
-        android:layout_marginTop="26dp"/>
-
-
-    <TextView
-        android:id="@+id/tvDestino"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Destino:"
-        android:textSize="18sp"
-        android:textColor="@android:color/darker_gray"
+        android:textColor="@android:color/black"
         android:layout_marginBottom="16dp"/>
 
     <!-- Botões Iniciar e Finalizar -->

@@ -25,6 +25,8 @@ public class ViagemAdapter extends RecyclerView.Adapter<ViagemAdapter.MyViewHold
     public ViagemAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ItemListRowBinding itemListRowBinding = ItemListRowBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new MyViewHolder(itemListRowBinding);
+
+
     }
 
     @Override

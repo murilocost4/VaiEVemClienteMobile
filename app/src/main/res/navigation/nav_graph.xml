@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.bikeshopclientemobile.view.LoginFragment"
-        android:label="fragment_login"
+        android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/acao_LoginFragment_MenuFragment"
@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/menuFragment"
         android:name="com.example.bikeshopclientemobile.view.MenuFragment"
-        android:label="fragment_menu"
+        android:label="Menu"
         tools:layout="@layout/fragment_menu" >
         <action
             android:id="@+id/acao_MenuFragment_VisualizacaoBikeFragment"
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/visualizacaoBikeFragment"
         android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemFragment"
-        android:label="fragment_visualizacao_bike"
+        android:label="Suas Viagens"
         tools:layout="@layout/fragment_visualizacao_viagem" >
         <action
             android:id="@+id/action_visualizacaoBikeFragment_to_acompanhaViagemFragment"
@@ -34,7 +34,7 @@
     <fragment
         android:id="@+id/acompanhaViagemFragment"
         android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemFragment"
-        android:label="fragment_acompanha_viagem"
+        android:label="Detalhes"
         tools:layout="@layout/fragment_acompanha_viagem">
         <argument
             android:name="viagem"

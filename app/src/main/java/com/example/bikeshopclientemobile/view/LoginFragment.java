@@ -90,7 +90,7 @@ public class LoginFragment extends Fragment {
                         String senha = binding.etLoginSenha.getText().toString();
 
                         // Criptografando a senha antes de enviar
-                        //String senhaCriptografada = Criptografia.criptografarSenha(senha);
+                        String senhaCriptografada = Criptografia.criptografarSenha(senha);
 
                         // instanciando o usuario que está se logando
                         usuarioLogado = new Usuario(usuario, senha);
