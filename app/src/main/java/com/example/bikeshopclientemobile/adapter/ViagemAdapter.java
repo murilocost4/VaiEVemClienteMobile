@@ -32,7 +32,13 @@ public class ViagemAdapter extends RecyclerView.Adapter<ViagemAdapter.MyViewHold
         Viagem v = listaViagens.get(position);
         holder.itemListRowBinding.tvViagemDestino.setText(v.getDestino());
         holder.itemListRowBinding.tvViagemData.setText(v.getData());
-        holder.itemListRowBinding.tvViagemStatus.setText(v.getStatus_viagem());
+        if (v.getStatus_viagem() == 0) {
+            holder.itemListRowBinding.tvViagemStatus.setText("Não Iniciado");
+        } else if (v.getStatus_viagem() == 1) {
+            holder.itemListRowBinding.tvViagemStatus.setText("Iniciado");
+        } else {
+            holder.itemListRowBinding.tvViagemStatus.setText("Finalizado");
+        }
         /* CUIDADO: .setText() precisa sempre de String. Se for outro tipo de dado, deve ser feita a conversão com o String.valueOf() */
 
         // tratando o clique no item

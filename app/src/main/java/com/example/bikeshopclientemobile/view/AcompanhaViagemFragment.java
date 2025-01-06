@@ -42,6 +42,7 @@ public class AcompanhaViagemFragment extends Fragment {
     ArrayList<StatusPassageiro> listaSP;
     StatusPassageiroAdapter spAdapter;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -58,6 +59,7 @@ public class AcompanhaViagemFragment extends Fragment {
         // obtendo a instância do viewModel
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
 
+        ccont = new ConexaoController(informacoesViewModel);
 
         if (getArguments() != null) {
             v = (Viagem) getArguments().getSerializable("viagem");
@@ -70,6 +72,7 @@ public class AcompanhaViagemFragment extends Fragment {
                     // Use os dados da viagem
                     binding.tvOrigem.setText(v.getOrigem());
                     binding.tvDestino.setText(v.getDestino());
+
                     Log.d("AcompanhaViagemFragment", "Origem: " + v.getOrigem());
                 } else {
                     Log.e("AcompanhaViagemFragment", "Viagem não encontrada para o ID: " + v.getTrip_id());
@@ -82,18 +85,70 @@ public class AcompanhaViagemFragment extends Fragment {
         }
 
         // programando o clique nos botões
+        /*binding.bIniciar.setOnClickListener(view1 -> {
+            new Thread(() -> {
+                if (ccont != null) {
+                    boolean resultado = ccont.viagemIniciar(v);
+                    getActivity().runOnUiThread(() -> {
+                        if (resultado) {
+                            Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Log.e("AcompanhaViagemFragment", "ConexaoController está nulo!");
+                }
+            }).start();
+        });*/
+
         binding.bIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ccont.viagemIniciar(v);
+                boolean resultado = ccont.iniciarViagem(v.getTrip_id());
+                getActivity().runOnUiThread(() -> {
+                    if (resultado) {
+                        Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
-        binding.bFinalizar.setOnClickListener(new View.OnClickListener() {
+
+        /*binding.bIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ccont.viagemFinalizar(v);
+                boolean resultado = ccont.viagemIniciar(v.getTrip_id());
+                getActivity().runOnUiThread(() -> {
+                    if (resultado) {
+                        Toast.makeText(getContext(), "Viagem iniciada com sucesso!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getContext(), "Erro ao iniciar a viagem.", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
-        });
+        });*/
+
+
+        /*binding.bFinalizar.setOnClickListener(view1 -> {
+            new Thread(() -> {
+                if (ccont != null) {
+                    boolean resultado = ccont.viagemFinalizar(v);
+                    getActivity().runOnUiThread(() -> {
+                        if (resultado) {
+                            Toast.makeText(getContext(), "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(getContext(), "Erro ao finalizar a viagem.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Log.e("AcompanhaViagemFragment", "ConexaoController está nulo!");
+                }
+            }).start();
+        });*/
+
+
 
         Thread thread = new Thread(new Runnable() {
             @Override

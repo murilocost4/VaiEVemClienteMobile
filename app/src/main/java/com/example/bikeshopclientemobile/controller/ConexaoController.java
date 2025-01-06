@@ -1,6 +1,10 @@
 package com.example.bikeshopclientemobile.controller;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+
+import androidx.core.util.Consumer;
 
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
@@ -9,6 +13,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import modelDominio.Usuario;
 import modelDominio.Admin;
 import modelDominio.Condutor;
@@ -51,10 +58,10 @@ public class ConexaoController {
             informacoesViewModel.getOutputStream().writeObject(usuario);
             usuarioLogado = (Usuario) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             usuarioLogado = null;
         } catch (ClassNotFoundException classe) {
-            Log.e("BikeShop", "Erro: " + classe.getMessage());
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
             usuarioLogado = null;
         }
         return usuarioLogado;
@@ -98,24 +105,29 @@ public class ConexaoController {
         return resultado;
     }
 
-    public boolean viagemIniciar(Viagem v) {
+    public boolean iniciarViagem(int codViagem) {
         boolean resultado;
         String mensagem;
         try {
             informacoesViewModel.getOutputStream().writeObject("viagemIniciar");
+            Log.d("Teste", "Comando viagemIniciar");
             mensagem = (String) informacoesViewModel.getInputStream().readObject();
-            informacoesViewModel.getOutputStream().writeObject(v);
-            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste", "Mensagem recebida");
+            informacoesViewModel.getOutputStream().writeInt(codViagem);
+            Log.d("Teste", "Codigo enviado");
+            resultado = (boolean) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste", "Resultado recebido");
         } catch (IOException ioe) {
-            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             resultado = false;
         } catch (ClassNotFoundException classe) {
             Log.e("VaiEVem", "Erro: " + classe.getMessage());
             resultado = false;
         }
-
         return resultado;
     }
+
+
 
     public boolean viagemFinalizar(Viagem v) {
         boolean resultado;
@@ -178,10 +190,10 @@ public class ConexaoController {
             informacoesViewModel.getOutputStream().writeInt(v.getTrip_id());
             listaSp = (ArrayList<StatusPassageiro>) informacoesViewModel.getInputStream().readObject();
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             listaSp = null;
         } catch (ClassNotFoundException classe) {
-            Log.e("BikeShop", "Erro: " + classe.getMessage());
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
             listaSp = null;
         }
         return listaSp;
