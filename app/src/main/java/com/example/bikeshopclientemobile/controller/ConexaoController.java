@@ -4,28 +4,20 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 
-import androidx.core.util.Consumer;
-
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import modelDominio.Usuario;
-import modelDominio.Admin;
-import modelDominio.Condutor;
-import modelDominio.Passageiro;
 import modelDominio.Viagem;
 import modelDominio.StatusPassageiro;
-
-import modelDominio.Usuario;
 
 public class ConexaoController {
     private InformacoesViewModel informacoesViewModel;
@@ -129,30 +121,38 @@ public class ConexaoController {
     }
 
 
-    public void finalizarViagem(int codViagem, Callback<Boolean> callback) {
-        new Thread(() -> {
+    public boolean finalizarViagem(int codViagem) {
+
             int resultado;
             try {
                 informacoesViewModel.getOutputStream().writeObject("viagemFinalizar");
-                informacoesViewModel.getOutputStream().flush();
+                //informacoesViewModel.getOutputStream().flush();
                 Log.d("Teste", "Comando viagemFinalizar");
-                String mensagem = (String) informacoesViewModel.getInputStream().readObject().toString();
-                System.out.println(mensagem);
+                //String mensagem = (String) informacoesViewModel.getInputStream().readObject();
+                InputStream inputStream = informacoesViewModel.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                String line;
+                StringBuilder stringBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    stringBuilder.append(line);
+                }
+                System.out.println(line);
+                //System.out.println(mensagem);
                 Log.d("Teste", "Mensagem recebida");
                 informacoesViewModel.getOutputStream().writeInt(codViagem);
                 informacoesViewModel.getOutputStream().flush();
                 Log.d("Teste", "Codigo enviado");
                 resultado = (int) informacoesViewModel.getInputStream().readInt();
                 Log.d("Teste", "Resultado recebido");
-            } catch (IOException | ClassNotFoundException e) {
+            } catch (IOException  e) {
                 Log.e("VaiEVem", "Erro: " + e.getMessage());
+               e.printStackTrace();
                 resultado = 0;
             }
             boolean finalResultado = (resultado == 1) ? true : false;
-            // Update UI on the main thread
-            new Handler(Looper.getMainLooper()).post(() -> callback.onResult(finalResultado));
-        }).start();
-    }
+            return finalResultado;
+        };
+
     // Define a callback interface
     public interface Callback<T> {
         void onResult(T result);

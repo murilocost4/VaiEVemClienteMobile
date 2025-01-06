@@ -72,6 +72,7 @@ public class AcompanhaViagemFragment extends Fragment {
                     // Use os dados da viagem
                     binding.tvOrigem.setText(v.getOrigem());
                     binding.tvDestino.setText(v.getDestino());
+                    Log.d("ID:", "Viagem: "+v.toString());
 
                     Log.d("AcompanhaViagemFragment", "Origem: " + v.getOrigem());
                 } else {
@@ -104,16 +105,32 @@ public class AcompanhaViagemFragment extends Fragment {
         binding.bFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+                Thread thread = new Thread(new Runnable() {
 
-                conexaoController.finalizarViagem(v.getTrip_id(), finalResultado -> {
-                    if (resultado) {
-                        Toast.makeText(getContext(), "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getContext(), "Erro ao finalizar viagem.", Toast.LENGTH_SHORT).show();
-                    }
+                    @Override
+                    public void run() {
+                        ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+
+                        boolean resultado = conexaoController.finalizarViagem(v.getTrip_id());
+                            if (resultado) {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getContext(), "Viagem finalizada com sucesso!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } else {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getContext(), "Erro ao finalizar viagem", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                    };
+
                 });
-
+                thread.start();
             }
         });
 
