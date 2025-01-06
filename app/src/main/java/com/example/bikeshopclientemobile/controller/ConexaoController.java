@@ -35,8 +35,9 @@ public class ConexaoController {
             // salvando as informações do socket no viewModel
             informacoesViewModel.inicializaObjetosSocket(in, out);
             resultado = true;
+            Log.e("Teste", "Resultado "+resultado);
         } catch (IOException ioe) {
-            Log.e("BikeShop", "Erro: " + ioe.getMessage());
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             resultado = false;
         }
         return resultado;
