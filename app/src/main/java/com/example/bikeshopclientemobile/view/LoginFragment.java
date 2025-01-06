@@ -22,6 +22,8 @@ import com.example.bikeshopclientemobile.databinding.FragmentLoginBinding;
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
 import modelDominio.Usuario;
+import util.Criptografia;
+
 
 public class LoginFragment extends Fragment {
     FragmentLoginBinding binding;
@@ -86,8 +88,13 @@ public class LoginFragment extends Fragment {
                         // obtendo as informações
                         String usuario = binding.etEmailUsuario.getText().toString();
                         String senha = binding.etLoginSenha.getText().toString();
+
+                        // Criptografando a senha antes de enviar
+                        String senhaCriptografada = Criptografia.criptografarSenha(senha);
+
                         // instanciando o usuario que está se logando
-                        usuarioLogado = new Usuario(usuario, senha);
+                        usuarioLogado = new Usuario(usuario, senhaCriptografada);
+
 
                         // criando a Thread para autenticar o usuário no servidor
                         Thread thread = new Thread(new Runnable() {
