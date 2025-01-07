@@ -218,6 +218,30 @@ public class ConexaoController {
         }
         return listaSp;
     }
+
+    public Viagem getViagemById(Viagem v) {
+        Viagem viagem;
+        String mensagem;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("getViagemById");
+            Log.d("Teste","Comando enviado");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste","Message received");
+            informacoesViewModel.getOutputStream().writeObject(v);
+            Log.d("Teste","Viagem enviada");
+            viagem = (Viagem) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste","Viagem received");
+        } catch (IOException ioe) {
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
+            viagem = null;
+            ioe.printStackTrace();
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            viagem = null;
+            classe.printStackTrace();
+        }
+        return viagem;
+    }
 }
 
 

@@ -64,6 +64,12 @@ public class AcompanhaViagemPassageiroFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.action_acompanhaViagemPassageiroFragment_to_visualizacaoViagemPassageiroFragment);
         });
 
+        // Listener para o botão "Atualizar"
+        binding.atualizar.setOnClickListener(event -> {
+            Toast.makeText(getContext(), "Atualizando informações...", Toast.LENGTH_SHORT).show();
+            atualizaDadosViagem();
+        });
+
         ccont = new ConexaoController(informacoesViewModel);
 
         if (getArguments() != null) {
@@ -104,8 +110,6 @@ public class AcompanhaViagemPassageiroFragment extends Fragment {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Usuario usLogado = informacoesViewModel.getUsuarioLogado();
-
                 // instanciando e invocando o conexão controller
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
                 listaSP = (ArrayList<StatusPassageiro>) v.getStatusPassageiros();
@@ -133,6 +137,43 @@ public class AcompanhaViagemPassageiroFragment extends Fragment {
 
         // Ensure the RecyclerView is ready
         binding.rvVisualizaPassageiros.setVisibility(View.VISIBLE);
+    }
+
+    public void atualizaDadosViagem() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // Recuperando informações atualizadas da viagem
+                Viagem viagemAtualizada = ccont.getViagemById(v);
+                if (viagemAtualizada != null) {
+                    v = viagemAtualizada;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            // Atualizando os dados da viagem na tela
+                            binding.tvOrigem.setText(v.getOrigem());
+                            binding.tvDestino.setText(v.getDestino());
+
+                            String status;
+                            if (v.getStatus_viagem() == 0) {
+                                status = "Não Iniciado";
+                            } else if (v.getStatus_viagem() == 1) {
+                                status = "Iniciado";
+                            } else {
+                                status = "Finalizado";
+                            }
+                            binding.tvStatus.setText(status);
+
+                            // Atualizando a listagem de passageiros
+                            atualizaListagem();
+                        }
+                    });
+                } else {
+                    Log.e("AcompanhaViagemFragment", "Falha ao atualizar dados da viagem.");
+                }
+            }
+        });
+        thread.start();
     }
 
     PassageiroSpAdapter.PassageiroOnClickListener trataCliqueItem = new PassageiroSpAdapter.PassageiroOnClickListener() {

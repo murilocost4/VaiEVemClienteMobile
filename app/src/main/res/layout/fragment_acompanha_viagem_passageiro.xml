@@ -6,24 +6,52 @@
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".view.AcompanhaViagemPassageiroFragment">
-    <Button
-        android:id="@+id/voltar"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:backgroundTint="@color/green"
-        android:drawableLeft="@drawable/rounded_corner"
-        android:drawablePadding="10dp"
-        android:elevation="2dp"
-        android:gravity="center"
-        android:paddingLeft="24dp"
-        android:padding="4dp"
-        android:paddingRight="24dp"
-        android:layout_centerHorizontal="false"
-        android:text="Voltar"
-        android:textColor="@android:color/white"
-        android:textSize="12sp" />
+        android:layout_marginBottom="4dp">
+
+        <Button
+            android:id="@+id/voltar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="start"
+            android:backgroundTint="@color/green"
+            android:drawableLeft="@drawable/rounded_corner"
+            android:drawablePadding="10dp"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:paddingLeft="24dp"
+            android:padding="4dp"
+            android:paddingRight="24dp"
+            android:layout_marginRight="150dp"
+            android:layout_centerHorizontal="false"
+            android:text="Voltar"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/atualizar"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:backgroundTint="@color/green"
+            android:drawableLeft="@drawable/rounded_corner"
+            android:drawablePadding="10dp"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:padding="4dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:text="Atualizar"
+            android:textColor="@android:color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
     <!-- Título da Tela -->
     <TextView
         android:id="@+id/tvTitulo"
