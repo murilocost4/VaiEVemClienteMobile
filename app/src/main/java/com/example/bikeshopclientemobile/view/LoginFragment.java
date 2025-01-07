@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
 
             // Tentando estabelecer a conexão
             try {
-                resultado = conexaoController.criaConexaoServidor("192.168.210.32", 12345);
+                resultado = conexaoController.criaConexaoServidor("192.168.210.124", 12345);
             } catch (Exception e) {
                 e.printStackTrace();
                 resultado = false;

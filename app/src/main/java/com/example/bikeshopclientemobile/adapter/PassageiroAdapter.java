@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,10 +49,13 @@ public class PassageiroAdapter extends RecyclerView.Adapter<PassageiroAdapter.My
         holder.itemListRowSpBinding.tvSpEndereco.setText(p.getPassageiro().getEndereco());
         if (p.getStatus() == 1) {
             holder.itemListRowSpBinding.tvSpStatus.setText("Presente");
+            holder.itemListRowSpBinding.tvSpStatus.setTextColor(Color.parseColor("#398D62"));
         } else if (p.getStatus() == 2) {
             holder.itemListRowSpBinding.tvSpStatus.setText("Ausente");
+            holder.itemListRowSpBinding.tvSpStatus.setTextColor(Color.parseColor("#FF0000"));
         } else {
             holder.itemListRowSpBinding.tvSpStatus.setText("Aguardando");
+            holder.itemListRowSpBinding.tvSpStatus.setTextColor(Color.parseColor("#4B4B4B"));
         }
 
 
@@ -70,6 +74,7 @@ public class PassageiroAdapter extends RecyclerView.Adapter<PassageiroAdapter.My
                                 @Override
                                 public void run() {
                                     holder.itemListRowSpBinding.tvSpStatus.setText("Ausente");
+                                    holder.itemListRowSpBinding.tvSpStatus.setTextColor(Color.parseColor("#FF0000"));
                                     Toast.makeText(view.getContext(), "Status Alterado com Sucesso", Toast.LENGTH_SHORT).show();
                                 }
                             });
@@ -103,6 +108,7 @@ public class PassageiroAdapter extends RecyclerView.Adapter<PassageiroAdapter.My
                                 @Override
                                 public void run() {
                                     holder.itemListRowSpBinding.tvSpStatus.setText("Presente");
+                                    holder.itemListRowSpBinding.tvSpStatus.setTextColor(Color.parseColor("#398D62"));
                                     Toast.makeText(view.getContext(), "Status Alterado com Sucesso", Toast.LENGTH_SHORT).show();
                                 }
                             });

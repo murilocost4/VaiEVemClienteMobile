@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_visualizacaoViagemAdminFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_visualizacaoViagemAdminFragment_to_acompanhaViagemAdminFragment"
+            app:destination="@id/acompanhaViagemAdminFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizacaoViagemPassageiroFragment"
@@ -80,5 +83,26 @@
         <action
             android:id="@+id/action_visualizacaoViagemPassageiroFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_visualizacaoViagemPassageiroFragment_to_acompanhaViagemPassageiroFragment"
+            app:destination="@id/acompanhaViagemPassageiroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/acompanhaViagemAdminFragment"
+        android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemAdminFragment"
+        android:label="fragment_acompanha_viagem_admin"
+        tools:layout="@layout/fragment_acompanha_viagem_admin" >
+        <action
+            android:id="@+id/action_acompanhaViagemAdminFragment_to_visualizacaoViagemAdminFragment"
+            app:destination="@id/visualizacaoViagemAdminFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/acompanhaViagemPassageiroFragment"
+        android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemPassageiroFragment"
+        android:label="fragment_acompanha_viagem_passageiro"
+        tools:layout="@layout/fragment_acompanha_viagem_passageiro" >
+        <action
+            android:id="@+id/action_acompanhaViagemPassageiroFragment_to_visualizacaoViagemPassageiroFragment"
+            app:destination="@id/visualizacaoViagemPassageiroFragment" />
     </fragment>
 </navigation>

@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".view.AcompanhaViagemFragment">
-
+    tools:context=".view.AcompanhaViagemAdminFragment">
     <Button
         android:id="@+id/voltar"
         android:layout_width="wrap_content"
@@ -26,6 +25,7 @@
         android:textColor="@android:color/white"
         android:textSize="12sp" />
     <!-- Título da Tela -->
+
     <TextView
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
@@ -86,6 +86,7 @@
             android:textColor="@android:color/black"/>
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

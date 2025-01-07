@@ -31,7 +31,7 @@
         android:backgroundTint="@color/green"
         android:drawableLeft="@drawable/rounded_corner"
         android:drawablePadding="10dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="10dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:elevation="2dp"

@@ -104,11 +104,7 @@ public class VisualizacaoViagemPassageiroFragment extends Fragment {
             Viagem viagemSelecionada = listaViagens.get(position); // Obtenha a viagem selecionada
             Bundle bundle = new Bundle();
             bundle.putSerializable("viagem", viagemSelecionada);
-            Toast.makeText(getContext()
-                    , "Origem: "+v.getOrigem()
-                            +"Destino: "+v.getDestino()
-                            +"Data: "+v.getData()
-                    , Toast.LENGTH_LONG).show();
+            Navigation.findNavController(view).navigate(R.id.action_visualizacaoViagemPassageiroFragment_to_acompanhaViagemPassageiroFragment, bundle);
         }
     };
 
