@@ -1,5 +1,6 @@
 package com.example.bikeshopclientemobile.view;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +23,7 @@ import com.example.bikeshopclientemobile.controller.ConexaoController;
 import com.example.bikeshopclientemobile.databinding.FragmentLoginBinding;
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
+import modelDominio.Admin;
 import modelDominio.Usuario;
 import util.Criptografia;
 
@@ -58,82 +61,81 @@ public class LoginFragment extends Fragment {
 
 
         // criando a thread para a criação da conexão socket com o servidor
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // declarando e instanciando o controller do socket
-                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                resultado = conexaoController.criaConexaoServidor("192.168.2.113", 12345);
-                // sincronizando as threads para mostrar o resultado
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        // testando o resultado
-                        if (resultado == true) {
-                            Toast.makeText(getContext(), "Conexão estabelecida com sucesso.", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(getContext(), "Erro: conexão com o servidor não efetuada.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+        Thread thread = new Thread(() -> {
+            // Declarando e instanciando o controller do socket
+            ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+            boolean resultado;
+
+            // Tentando estabelecer a conexão
+            try {
+                resultado = conexaoController.criaConexaoServidor("192.168.210.32", 12345);
+            } catch (Exception e) {
+                e.printStackTrace();
+                resultado = false;
             }
+
+            // Sincronizando as threads para mostrar o resultado
+            boolean finalResultado = resultado;
+            getActivity().runOnUiThread(() -> {
+                // Exibindo o resultado da conexão
+                if (finalResultado) {
+                    Toast.makeText(getContext(), "Conexão estabelecida com sucesso.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getContext(), "Erro: conexão com o servidor não efetuada.", Toast.LENGTH_SHORT).show();
+                }
+            });
         });
+
+// Iniciar a thread
         thread.start();
 
-        // programando o clique nos botões
-        binding.bLoginEntrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // verificando se o usuário informou os dados
-                if (!binding.etEmailUsuario.getText().toString().equals("")) {
-                    if (!binding.etLoginSenha.getText().toString().equals("")) {
-                        // obtendo as informações
-                        String usuario = binding.etEmailUsuario.getText().toString();
-                        String senha = binding.etLoginSenha.getText().toString();
 
-                        // Criptografando a senha antes de enviar
-                        String senhaCriptografada = Criptografia.criptografarSenha(senha);
+        binding.bLoginEntrar.setOnClickListener(view1 -> {
+            String email = binding.etEmailUsuario.getText().toString().trim();
+            String senha = binding.etLoginSenha.getText().toString().trim();
 
-                        // instanciando o usuario que está se logando
-                        usuarioLogado = new Usuario(usuario, senhaCriptografada);
+            // Validação básica dos campos
+            if (email.isEmpty()) {
+                binding.etEmailUsuario.setError("Erro: informe o usuário.");
+                binding.etEmailUsuario.requestFocus();
+                return;
+            }
+            if (senha.isEmpty()) {
+                binding.etLoginSenha.setError("Erro: informe a senha.");
+                binding.etLoginSenha.requestFocus();
+                return;
+            }
 
+            // Criptografando a senha
+            String senhaCriptografada = Criptografia.criptografarSenha(senha);
 
-                        // criando a Thread para autenticar o usuário no servidor
-                        Thread thread = new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                // instanciando o controller e realizando a chamada
-                                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                                usuarioLogado = conexaoController.efetuarLogin(usuarioLogado);
-                                // sincronizando as threads para tratar o resultado
-                                getActivity().runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        // trantando o resultado da autenticação
-                                        if (usuarioLogado != null) {
-                                            // salvando o usuário logado
-                                            informacoesViewModel.inicializaUsuarioLogado(usuarioLogado);
-                                            Navigation.findNavController(view).navigate(R.id.acao_LoginFragment_MenuFragment);
-                                        } else {
-                                            Toast.makeText(getContext(), "Erro: usuário e/ou senha inválidos.", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
+            // Mostrando indicador de progresso
+            ProgressDialog progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("Autenticando...");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
-                            }
-                        });
-                        thread.start();
+            // Iniciando autenticação em uma thread separada
+            new Thread(() -> {
+                ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
+                Usuario usuarioLogado = conexaoController.efetuarLogin(new Usuario(email, senha));
+
+                // Atualizando a UI na thread principal
+                getActivity().runOnUiThread(() -> {
+                    progressDialog.dismiss();
+                    if (usuarioLogado != null) {
+                        informacoesViewModel.inicializaUsuarioLogado(usuarioLogado);
+
+                            Navigation.findNavController(view).navigate(R.id.acao_LoginFragment_MenuFragment);
+
 
                     } else {
-                        binding.etLoginSenha.setError("Erro: informe a senha.");
-                        binding.etLoginSenha.requestFocus();
+                        Toast.makeText(getContext(), "Erro: usuário e/ou senha inválidos.", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    binding.etEmailUsuario.setError("Erro: informe o usuário.");
-                    binding.etEmailUsuario.requestFocus();
-                }
-            }
+                });
+            }).start();
         });
+
 
     }
 

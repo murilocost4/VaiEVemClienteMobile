@@ -54,9 +54,11 @@ public class ConexaoController {
         } catch (IOException ioe) {
             Log.e("VaiEVem", "Erro: " + ioe.getMessage());
             usuarioLogado = null;
+            ioe.printStackTrace();
         } catch (ClassNotFoundException classe) {
             Log.e("VaiEVem", "Erro: " + classe.getMessage());
             usuarioLogado = null;
+            classe.printStackTrace();
         }
         return usuarioLogado;
     }
@@ -98,70 +100,42 @@ public class ConexaoController {
 
         return resultado;
     }
-    public boolean iniciarViagem(int codViagem) {
-
-        int resultado;
+    public boolean iniciarViagem(Viagem v) {
+        String mensagem;
+        boolean resultado;
         try {
             informacoesViewModel.getOutputStream().writeObject("viagemIniciar");
-            //informacoesViewModel.getOutputStream().flush();
-            Log.d("Teste", "Comando viagemIniciar");
-            //String mensagem = (String) informacoesViewModel.getInputStream().readObject();
-            InputStream inputStream = informacoesViewModel.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            String line;
-            StringBuilder stringBuilder = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            System.out.println(line);
-            //System.out.println(mensagem);
-            Log.d("Teste", "Mensagem recebida");
-            informacoesViewModel.getOutputStream().writeInt(codViagem);
-            informacoesViewModel.getOutputStream().flush();
-            Log.d("Teste", "Codigo enviado");
-            resultado = (int) informacoesViewModel.getInputStream().readInt();
-            Log.d("Teste", "Resultado recebido");
-        } catch (IOException  e) {
-            Log.e("VaiEVem", "Erro: " + e.getMessage());
-            e.printStackTrace();
-            resultado = 0;
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeObject(v);
+            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+        } catch (IOException ioe) {
+            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            resultado = false;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            resultado = false;
         }
-        boolean finalResultado = (resultado == 1) ? true : false;
-        return finalResultado;
-    };
+        return resultado;
+    }
 
 
-    public boolean finalizarViagem(int codViagem) {
-
-            int resultado;
-            try {
-                informacoesViewModel.getOutputStream().writeObject("viagemFinalizar");
-                //informacoesViewModel.getOutputStream().flush();
-                Log.d("Teste", "Comando viagemFinalizar");
-                //String mensagem = (String) informacoesViewModel.getInputStream().readObject();
-                InputStream inputStream = informacoesViewModel.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                StringBuilder stringBuilder = new StringBuilder();
-                while ((line = reader.readLine()) != null) {
-                    stringBuilder.append(line);
-                }
-                System.out.println(line);
-                //System.out.println(mensagem);
-                Log.d("Teste", "Mensagem recebida");
-                informacoesViewModel.getOutputStream().writeInt(codViagem);
-                informacoesViewModel.getOutputStream().flush();
-                Log.d("Teste", "Codigo enviado");
-                resultado = (int) informacoesViewModel.getInputStream().readInt();
-                Log.d("Teste", "Resultado recebido");
-            } catch (IOException  e) {
-                Log.e("VaiEVem", "Erro: " + e.getMessage());
-               e.printStackTrace();
-                resultado = 0;
-            }
-            boolean finalResultado = (resultado == 1) ? true : false;
-            return finalResultado;
-        };
+    public boolean finalizarViagem(Viagem v) {
+        String mensagem;
+        boolean resultado;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("viagemFinalizar");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeObject(v);
+            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+        } catch (IOException ioe) {
+            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            resultado = false;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            resultado = false;
+        }
+        return resultado;
+    }
 
     // Define a callback interface
     public interface Callback<T> {
@@ -173,6 +147,28 @@ public class ConexaoController {
         String mensagem;
         try {
             informacoesViewModel.getOutputStream().writeObject("ViagemCondutorLista");
+            Log.d("Teste", "Comando enviado");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste", "Mensagem recebida");
+            informacoesViewModel.getOutputStream().writeObject(usr);
+            Log.d("Teste", "Codigo enviado: "+usr.getCodUsuario());
+            listaViagens = (ArrayList<Viagem>) informacoesViewModel.getInputStream().readObject();
+            Log.d("Teste", "Lista recebida");
+        } catch (IOException ioe) {
+            Log.e("VaiEVem", "Erro: " + ioe.getMessage());
+            listaViagens = null;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            listaViagens = null;
+        }
+        return listaViagens;
+    }
+
+    public ArrayList<Viagem> viagemPassageiroLista(Usuario usr) {
+        ArrayList<Viagem> listaViagens;
+        String mensagem;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("ViagemPassageiroLista");
             Log.d("Teste", "Comando enviado");
             mensagem = (String) informacoesViewModel.getInputStream().readObject();
             Log.d("Teste", "Mensagem recebida");

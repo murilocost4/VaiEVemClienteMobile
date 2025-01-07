@@ -24,6 +24,12 @@
         <action
             android:id="@+id/acao_menuFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_visualizacaoViagemAdminFragment"
+            app:destination="@id/visualizacaoViagemAdminFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_visualizacaoViagemPassageiroFragment"
+            app:destination="@id/visualizacaoViagemPassageiroFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizacaoBikeFragment"
@@ -56,5 +62,23 @@
         <action
             android:id="@+id/acao_splashscreen_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visualizacaoViagemAdminFragment"
+        android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemAdminFragment"
+        android:label="fragment_visualizacao_viagem_admin"
+        tools:layout="@layout/fragment_visualizacao_viagem_admin" >
+        <action
+            android:id="@+id/action_visualizacaoViagemAdminFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/visualizacaoViagemPassageiroFragment"
+        android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemPassageiroFragment"
+        android:label="fragment_visualizacao_viagem_passageiro"
+        tools:layout="@layout/fragment_visualizacao_viagem_passageiro" >
+        <action
+            android:id="@+id/action_visualizacaoViagemPassageiroFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

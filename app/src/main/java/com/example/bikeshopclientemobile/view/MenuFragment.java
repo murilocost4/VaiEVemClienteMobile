@@ -16,10 +16,16 @@ import com.example.bikeshopclientemobile.R;
 import com.example.bikeshopclientemobile.databinding.FragmentMenuBinding;
 import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
 
+import modelDominio.Admin;
+import modelDominio.Condutor;
+import modelDominio.Usuario;
+
 
 public class MenuFragment extends Fragment {
     FragmentMenuBinding binding;
     InformacoesViewModel informacoesViewModel;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,7 +47,17 @@ public class MenuFragment extends Fragment {
         binding.bMenuViagens.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.acao_MenuFragment_VisualizacaoBikeFragment);
+                Usuario usLogado = informacoesViewModel.getUsuarioLogado();
+
+                if (usLogado instanceof Admin) {
+                    Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_visualizacaoViagemAdminFragment);
+                } else if (usLogado instanceof Condutor) {
+                    Navigation.findNavController(view).navigate(R.id.acao_MenuFragment_VisualizacaoBikeFragment);
+                } else {
+                    Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_visualizacaoViagemPassageiroFragment);
+                }
+
+
             }
         });
 

@@ -107,7 +107,7 @@ public class AcompanhaViagemFragment extends Fragment {
                     public void run() {
                         ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
 
-                        boolean resultado = conexaoController.iniciarViagem(v.getTrip_id());
+                        boolean resultado = conexaoController.iniciarViagem(v);
                         if (resultado) {
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
@@ -140,7 +140,7 @@ public class AcompanhaViagemFragment extends Fragment {
                     public void run() {
                         ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
 
-                        boolean resultado = conexaoController.finalizarViagem(v.getTrip_id());
+                        boolean resultado = conexaoController.finalizarViagem(v);
                             if (resultado) {
                                 getActivity().runOnUiThread(new Runnable() {
                                     @Override
@@ -207,7 +207,7 @@ public class AcompanhaViagemFragment extends Fragment {
                         public void run() {
                             // chamando o método responsável por listar as viages
                             if (spAdapter == null) {
-                                spAdapter = new PassageiroAdapter(listaSP, trataCliqueItem, conexaoController);
+                                spAdapter = new PassageiroAdapter(listaSP, trataCliqueItem, conexaoController, informacoesViewModel);
                                 binding.rvVisualizaPassageiros.setLayoutManager(new LinearLayoutManager(getContext()));
                                 binding.rvVisualizaPassageiros.setItemAnimator(new DefaultItemAnimator());
                                 binding.rvVisualizaPassageiros.setAdapter(spAdapter);

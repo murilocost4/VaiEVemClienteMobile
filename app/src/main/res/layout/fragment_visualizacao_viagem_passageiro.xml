@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".view.VisualizacaoViagemPassageiroFragment">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Viagens"
+        android:textColor="@color/green"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <TextView
+        android:id="@+id/tvSubtitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confira as viagens cadastradas"
+        android:textSize="16sp"
+        android:layout_below="@id/tvTitulo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvVisualizaViagens"
+        android:layout_width="377dp"
+        android:layout_height="498dp"
+        android:layout_below="@id/tvSubtitulo"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_list_row" />
+
+    <Button
+        android:id="@+id/voltar"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="630dp"
+        android:backgroundTint="@color/green"
+        android:drawableLeft="@drawable/rounded_corner"
+        android:drawablePadding="10dp"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:paddingLeft="24dp"
+        android:padding="12dp"
+        android:paddingRight="24dp"
+        android:layout_centerHorizontal="true"
+        android:text="Voltar"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+</RelativeLayout>
