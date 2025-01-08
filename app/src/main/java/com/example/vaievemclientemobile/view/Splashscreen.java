@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,12 +10,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
-import com.example.bikeshopclientemobile.R;
-import com.example.bikeshopclientemobile.databinding.FragmentMenuBinding;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.R;
+import com.example.vaievemclientemobile.databinding.FragmentMenuBinding;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
 public class Splashscreen extends Fragment {
 

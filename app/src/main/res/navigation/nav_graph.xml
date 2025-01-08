@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.bikeshopclientemobile.view.LoginFragment"
+        android:name="com.example.vaievemclientemobile.view.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.bikeshopclientemobile.view.MenuFragment"
+        android:name="com.example.vaievemclientemobile.view.MenuFragment"
         android:label="Menu"
         tools:layout="@layout/fragment_menu" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/visualizacaoBikeFragment"
-        android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemFragment"
+        android:name="com.example.vaievemclientemobile.view.VisualizacaoViagemFragment"
         android:label="Suas Viagens"
         tools:layout="@layout/fragment_visualizacao_viagem" >
         <action
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/acompanhaViagemFragment"
-        android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemFragment"
+        android:name="com.example.vaievemclientemobile.view.AcompanhaViagemFragment"
         android:label="Detalhes"
         tools:layout="@layout/fragment_acompanha_viagem">
         <argument
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashscreen"
-        android:name="com.example.bikeshopclientemobile.view.Splashscreen"
+        android:name="com.example.vaievemclientemobile.view.Splashscreen"
         android:label="Splashscreen" >
         <action
             android:id="@+id/acao_splashscreen_to_loginFragment"
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/visualizacaoViagemAdminFragment"
-        android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemAdminFragment"
+        android:name="com.example.vaievemclientemobile.view.VisualizacaoViagemAdminFragment"
         android:label="fragment_visualizacao_viagem_admin"
         tools:layout="@layout/fragment_visualizacao_viagem_admin" >
         <action
@@ -77,7 +77,7 @@
     </fragment>
     <fragment
         android:id="@+id/visualizacaoViagemPassageiroFragment"
-        android:name="com.example.bikeshopclientemobile.view.VisualizacaoViagemPassageiroFragment"
+        android:name="com.example.vaievemclientemobile.view.VisualizacaoViagemPassageiroFragment"
         android:label="fragment_visualizacao_viagem_passageiro"
         tools:layout="@layout/fragment_visualizacao_viagem_passageiro" >
         <action
@@ -89,7 +89,7 @@
     </fragment>
     <fragment
         android:id="@+id/acompanhaViagemAdminFragment"
-        android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemAdminFragment"
+        android:name="com.example.vaievemclientemobile.view.AcompanhaViagemAdminFragment"
         android:label="fragment_acompanha_viagem_admin"
         tools:layout="@layout/fragment_acompanha_viagem_admin" >
         <action
@@ -98,7 +98,7 @@
     </fragment>
     <fragment
         android:id="@+id/acompanhaViagemPassageiroFragment"
-        android:name="com.example.bikeshopclientemobile.view.AcompanhaViagemPassageiroFragment"
+        android:name="com.example.vaievemclientemobile.view.AcompanhaViagemPassageiroFragment"
         android:label="fragment_acompanha_viagem_passageiro"
         tools:layout="@layout/fragment_acompanha_viagem_passageiro" >
         <action

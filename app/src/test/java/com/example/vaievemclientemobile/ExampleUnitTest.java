@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile;
+package com.example.vaievemclientemobile;
 
 import org.junit.Test;
 

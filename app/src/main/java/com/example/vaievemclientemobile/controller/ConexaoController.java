@@ -1,15 +1,10 @@
-package com.example.bikeshopclientemobile.controller;
+package com.example.vaievemclientemobile.controller;
 
-import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;

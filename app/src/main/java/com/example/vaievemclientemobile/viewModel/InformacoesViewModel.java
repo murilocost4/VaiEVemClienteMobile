@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.viewModel;
+package com.example.vaievemclientemobile.viewModel;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.os.Bundle;
 
@@ -6,33 +6,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.bikeshopclientemobile.R;
-import com.example.bikeshopclientemobile.adapter.ViagemAdapter;
-import com.example.bikeshopclientemobile.controller.ConexaoController;
-import com.example.bikeshopclientemobile.databinding.FragmentVisualizacaoViagemAdminBinding;
-import com.example.bikeshopclientemobile.databinding.FragmentVisualizacaoViagemBinding;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.R;
+import com.example.vaievemclientemobile.adapter.ViagemAdapter;
+import com.example.vaievemclientemobile.controller.ConexaoController;
+import com.example.vaievemclientemobile.databinding.FragmentVisualizacaoViagemAdminBinding;
+import com.example.vaievemclientemobile.databinding.FragmentVisualizacaoViagemBinding;
+import com.example.vaievemclientemobile.databinding.FragmentVisualizacaoViagemPassageiroBinding;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import modelDominio.Viagem;
 import modelDominio.Usuario;
 
 
-public class VisualizacaoViagemAdminFragment extends Fragment {
-    FragmentVisualizacaoViagemAdminBinding binding;
+public class VisualizacaoViagemPassageiroFragment extends Fragment {
+    FragmentVisualizacaoViagemPassageiroBinding binding;
     ViagemAdapter viagemAdapter;
 
     InformacoesViewModel informacoesViewModel;
@@ -42,7 +40,7 @@ public class VisualizacaoViagemAdminFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_visualizacao_bike, container, false);
-        binding = FragmentVisualizacaoViagemAdminBinding.inflate(inflater, container, false);
+        binding = FragmentVisualizacaoViagemPassageiroBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
@@ -57,7 +55,7 @@ public class VisualizacaoViagemAdminFragment extends Fragment {
         atualizaListagem();
 
         binding.voltar.setOnClickListener(event -> {
-            Navigation.findNavController(view).navigate(R.id.action_visualizacaoViagemAdminFragment_to_menuFragment);
+            Navigation.findNavController(view).navigate(R.id.action_visualizacaoViagemPassageiroFragment_to_menuFragment);
         });
     }
 
@@ -69,7 +67,7 @@ public class VisualizacaoViagemAdminFragment extends Fragment {
 
                 // instanciando e invocando o conexão controller
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                listaViagens = conexaoController.viagemLista();
+                listaViagens = conexaoController.viagemPassageiroLista(usLogado);
                 System.out.println("Conjdutor: "+usLogado.getCodUsuario());
                 // verificando o resultado para depois sincronizar as threads
                 if (listaViagens != null) {
@@ -103,7 +101,7 @@ public class VisualizacaoViagemAdminFragment extends Fragment {
             Viagem viagemSelecionada = listaViagens.get(position); // Obtenha a viagem selecionada
             Bundle bundle = new Bundle();
             bundle.putSerializable("viagem", viagemSelecionada);
-            Navigation.findNavController(view).navigate(R.id.action_visualizacaoViagemAdminFragment_to_acompanhaViagemAdminFragment, bundle);
+            Navigation.findNavController(view).navigate(R.id.action_visualizacaoViagemPassageiroFragment_to_acompanhaViagemPassageiroFragment, bundle);
         }
     };
 

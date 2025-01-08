@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.adapter;
+package com.example.vaievemclientemobile.adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,14 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import androidx.fragment.app.Fragment;
 
-import com.example.bikeshopclientemobile.databinding.ItemListRowSpBinding;
+import com.example.vaievemclientemobile.databinding.ItemListRowSpBinding;
 
 import modelDominio.Passageiro;
 import modelDominio.StatusPassageiro;
-import com.example.bikeshopclientemobile.controller.ConexaoController;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.controller.ConexaoController;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
 import java.util.List;
 

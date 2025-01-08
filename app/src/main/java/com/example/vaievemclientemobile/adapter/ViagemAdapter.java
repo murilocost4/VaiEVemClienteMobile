@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.adapter;
+package com.example.vaievemclientemobile.adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bikeshopclientemobile.databinding.ItemListRowBinding;
+import com.example.vaievemclientemobile.databinding.ItemListRowBinding;
 
 import modelDominio.Viagem;
 

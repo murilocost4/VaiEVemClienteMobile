@@ -1,20 +1,17 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.os.Bundle;
 
-import com.example.bikeshopclientemobile.R;
-import com.google.android.material.snackbar.Snackbar;
+import com.example.vaievemclientemobile.R;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.bikeshopclientemobile.databinding.ActivityMainBinding;
+import com.example.vaievemclientemobile.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;

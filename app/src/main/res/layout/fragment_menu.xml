@@ -22,6 +22,13 @@
         android:id="@+id/bMenuViagens"
         android:backgroundTint="@color/green"
         android:textColor="@android:color/white"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Minhas Viagens"
+        android:id="@+id/bRecuperaPass"
+        android:backgroundTint="@color/green"
+        android:textColor="@android:color/white"/>
 
     <Button
         android:id="@+id/voltar"

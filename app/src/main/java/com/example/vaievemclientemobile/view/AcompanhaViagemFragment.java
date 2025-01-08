@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.os.Bundle;
 
@@ -16,12 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.bikeshopclientemobile.R;
-import com.example.bikeshopclientemobile.adapter.PassageiroAdapter;
-import com.example.bikeshopclientemobile.adapter.ViagemAdapter;
-import com.example.bikeshopclientemobile.controller.ConexaoController;
-import com.example.bikeshopclientemobile.databinding.FragmentAcompanhaViagemBinding;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.R;
+import com.example.vaievemclientemobile.adapter.PassageiroAdapter;
+import com.example.vaievemclientemobile.controller.ConexaoController;
+import com.example.vaievemclientemobile.databinding.FragmentAcompanhaViagemBinding;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
 import java.util.ArrayList;
 

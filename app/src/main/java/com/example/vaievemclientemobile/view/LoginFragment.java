@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -18,12 +18,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.bikeshopclientemobile.R;
-import com.example.bikeshopclientemobile.controller.ConexaoController;
-import com.example.bikeshopclientemobile.databinding.FragmentLoginBinding;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.R;
+import com.example.vaievemclientemobile.controller.ConexaoController;
+import com.example.vaievemclientemobile.databinding.FragmentLoginBinding;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
-import modelDominio.Admin;
 import modelDominio.Usuario;
 import util.Criptografia;
 
@@ -68,7 +67,7 @@ public class LoginFragment extends Fragment {
 
             // Tentando estabelecer a conexão
             try {
-                resultado = conexaoController.criaConexaoServidor("192.168.210.13", 12345);
+                resultado = conexaoController.criaConexaoServidor("172.20.10.2", 12345);
             } catch (Exception e) {
                 e.printStackTrace();
                 resultado = false;

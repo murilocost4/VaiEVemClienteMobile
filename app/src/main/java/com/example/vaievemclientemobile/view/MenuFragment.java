@@ -1,4 +1,4 @@
-package com.example.bikeshopclientemobile.view;
+package com.example.vaievemclientemobile.view;
 
 import android.os.Bundle;
 
@@ -12,9 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.bikeshopclientemobile.R;
-import com.example.bikeshopclientemobile.databinding.FragmentMenuBinding;
-import com.example.bikeshopclientemobile.viewModel.InformacoesViewModel;
+import com.example.vaievemclientemobile.R;
+import com.example.vaievemclientemobile.databinding.FragmentMenuBinding;
+import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 
 import modelDominio.Admin;
 import modelDominio.Condutor;
