@@ -20,10 +20,10 @@ import com.example.vaievemclientemobile.viewModel.InformacoesViewModel;
 import java.util.List;
 
 public class PassageiroAdapter extends RecyclerView.Adapter<PassageiroAdapter.MyViewHolder> {
-    private List<StatusPassageiro> passageiroLista;
-    private PassageiroOnClickListener passageiroOnClickListener;
-    private ConexaoController conexaoController;
-    private InformacoesViewModel informacoesViewModel;
+    private final List<StatusPassageiro> passageiroLista;
+    private final PassageiroOnClickListener passageiroOnClickListener;
+    private final ConexaoController conexaoController;
+    private final InformacoesViewModel informacoesViewModel;
 
     private ItemListRowSpBinding binding;
 

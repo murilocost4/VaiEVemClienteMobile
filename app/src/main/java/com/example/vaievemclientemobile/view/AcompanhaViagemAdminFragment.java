@@ -124,7 +124,7 @@ public class AcompanhaViagemAdminFragment extends Fragment {
                                 }
                             });
                         }
-                    };
+                    }
 
                 });
                 thread.start();
@@ -157,7 +157,7 @@ public class AcompanhaViagemAdminFragment extends Fragment {
                                 }
                             });
                         }
-                    };
+                    }
 
                 });
                 thread.start();

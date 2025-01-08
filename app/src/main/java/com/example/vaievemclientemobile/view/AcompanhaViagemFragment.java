@@ -123,7 +123,7 @@ public class AcompanhaViagemFragment extends Fragment {
                                 }
                             });
                         }
-                    };
+                    }
 
                 });
                 thread.start();
@@ -156,7 +156,7 @@ public class AcompanhaViagemFragment extends Fragment {
                                     }
                                 });
                             }
-                    };
+                    }
 
                 });
                 thread.start();

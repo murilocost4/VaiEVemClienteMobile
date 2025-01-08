@@ -18,7 +18,14 @@
         android:textStyle="bold"
         android:layout_marginBottom="8dp"/>
 
-
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etEmail"
+        android:hint="Confirme seu Email"
+        android:inputType="text"
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="16dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

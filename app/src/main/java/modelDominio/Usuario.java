@@ -43,7 +43,7 @@ public class Usuario implements Serializable {
         this.fone = fone;
     }
 
-    public Usuario(String email, String senha) {
+    public Usuario(String senha, String email) {
         this.email = email;
         this.senha = senha;
     }
@@ -110,6 +110,9 @@ public class Usuario implements Serializable {
     }
 
     public void setEmail(String email) {
+        if (email == null || !email.contains("@")) {
+            throw new IllegalArgumentException("Email inválido");
+        }
         this.email = email;
     }
 
@@ -123,7 +126,16 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "codUsuario=" + codUsuario + ", nomeUsuario=" + nomeUsuario + ", cpf=" + cpf + ", nascimento=" + nascimento + ", endereco=" + endereco + ", email=" + email + ", fone=" + fone +'}';
+        return "Usuario{" +
+                "codUsuario=" + codUsuario +
+                ", nomeUsuario='" + nomeUsuario + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", nascimento='" + nascimento + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", fone='" + fone + '\'' +
+                '}';
     }
 
 }

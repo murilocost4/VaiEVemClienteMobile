@@ -119,7 +119,7 @@ public class LoginFragment extends Fragment {
             // Iniciando autenticação em uma thread separada
             new Thread(() -> {
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                Usuario usuarioLogado = conexaoController.efetuarLogin(new Usuario(email, senhaCriptografada));
+                Usuario usuarioLogado = conexaoController.efetuarLogin(new Usuario(senhaCriptografada, email));
 
                 // Atualizando a UI na thread principal
                 getActivity().runOnUiThread(() -> {

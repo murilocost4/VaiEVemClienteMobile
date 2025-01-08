@@ -13,11 +13,11 @@ import util.Criptografia;  // Importando a classe Criptografia
 
 public class InformacoesViewModel extends ViewModel {
     // Informações necessárias para o Socket
-    private MutableLiveData<ObjectInputStream> mIn = new MutableLiveData<>();
-    private MutableLiveData<ObjectOutputStream> mOut = new MutableLiveData<>();
+    private final MutableLiveData<ObjectInputStream> mIn = new MutableLiveData<>();
+    private final MutableLiveData<ObjectOutputStream> mOut = new MutableLiveData<>();
 
     // Usuário logado no sistema
-    private MutableLiveData<Usuario> mUsuarioLogado = new MutableLiveData<>();
+    private final MutableLiveData<Usuario> mUsuarioLogado = new MutableLiveData<>();
 
     // Inicializa os objetos do socket
     public void inicializaObjetosSocket(ObjectInputStream in, ObjectOutputStream out) {

@@ -13,8 +13,8 @@ import modelDominio.Viagem;
 import java.util.List;
 
 public class ViagemAdapter extends RecyclerView.Adapter<ViagemAdapter.MyViewHolder> {
-    private List<Viagem> listaViagens;
-    private ViagemOnClickListener viagemOnClickListener;
+    private final List<Viagem> listaViagens;
+    private final ViagemOnClickListener viagemOnClickListener;
 
     public ViagemAdapter(List<Viagem> listaViagens, ViagemOnClickListener viagemOnClickListener) {
         this.listaViagens = listaViagens;
@@ -68,7 +68,7 @@ public class ViagemAdapter extends RecyclerView.Adapter<ViagemAdapter.MyViewHold
     }
 
     public interface ViagemOnClickListener {
-        public void onClickViagem(View view, int position, Viagem v);
+        void onClickViagem(View view, int position, Viagem v);
     }
 
 }

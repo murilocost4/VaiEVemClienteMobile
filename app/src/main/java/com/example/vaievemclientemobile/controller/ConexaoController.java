@@ -9,13 +9,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.concurrent.Executors;
 
 import modelDominio.Usuario;
 import modelDominio.Viagem;
 import modelDominio.StatusPassageiro;
 
 public class ConexaoController {
-    private InformacoesViewModel informacoesViewModel;
+    private final InformacoesViewModel informacoesViewModel;
     public ConexaoController(InformacoesViewModel informacoesViewModel) {
         this.informacoesViewModel = informacoesViewModel;
     }
@@ -238,14 +239,23 @@ public class ConexaoController {
         return viagem;
     }
 
-    public boolean alteraSenha(Usuario usr) {
+    public boolean alteraSenha(int codUsuario, String senha) {
         String mensagem;
+        String mensagem2;
         boolean resultado;
         try {
-            informacoesViewModel.getOutputStream().writeObject("UsuarioAlterar");
+            informacoesViewModel.getOutputStream().writeObject("alterarSenha");
+            Log.d("AlteraSenha", "Comando Enviado");
             mensagem = (String) informacoesViewModel.getInputStream().readObject();
-            informacoesViewModel.getOutputStream().writeObject(usr);
+            Log.d("AlteraSenha", "Mensagem Recebida");
+            informacoesViewModel.getOutputStream().writeObject(codUsuario);
+            Log.d("AlteraSenha", "Codigo enviado: "+codUsuario);
+            mensagem2 = (String) informacoesViewModel.getInputStream().readObject();
+            Log.d("AlteraSenha", "Mensagem2 Recebida");
+            informacoesViewModel.getOutputStream().writeObject(senha);
+            Log.d("AlteraSenha", "Senha enviada: "+senha);
             resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+            Log.d("AlteraSenha", "Resultado recebido: "+resultado);
         } catch (IOException ioe) {
             Log.e("VaiEVem","Erro: " + ioe.getMessage());
             resultado = false;
@@ -259,6 +269,9 @@ public class ConexaoController {
     public boolean verificaUsuario(Usuario usr) {
         String mensagem;
         boolean resultado;
+        System.out.println("Nome: " + usr.getNomeUsuario());
+        System.out.println("Email: " + usr.getEmail());
+        System.out.println("Senha: " + usr.getSenha());
         try {
             informacoesViewModel.getOutputStream().writeObject("verificaUsuario");
             mensagem = (String) informacoesViewModel.getInputStream().readObject();

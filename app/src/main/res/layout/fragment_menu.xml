@@ -7,6 +7,32 @@
     android:padding="16dp"
     tools:context=".view.MenuFragment">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_bus"
+        android:contentDescription="Ícone de ônibus"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="100dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Vai e Vem"
+        android:textColor="@color/dark_gray"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="24dp"
+        android:text="Menu"
+        android:textSize="16sp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +40,7 @@
         android:id="@+id/tvMenuSaudacao"
         android:textSize="18sp"
         android:layout_gravity="center_horizontal"
-        android:paddingTop="300dp"/>
+        android:layout_marginTop="20dp"/>
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
