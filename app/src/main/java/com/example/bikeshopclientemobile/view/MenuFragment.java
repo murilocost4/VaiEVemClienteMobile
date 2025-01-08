@@ -31,6 +31,7 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         //return inflater.inflate(R.layout.fragment_menu, container, false);
+
         binding = FragmentMenuBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -42,6 +43,14 @@ public class MenuFragment extends Fragment {
         informacoesViewModel = new ViewModelProvider(getActivity()).get(InformacoesViewModel.class);
         // definindo a saudação na tela
         binding.tvMenuSaudacao.setText(informacoesViewModel.getUsuarioLogado().getNomeUsuario() + ", seja bem-vindo. Deseja: ");
+
+        Usuario usLogado = informacoesViewModel.getUsuarioLogado();
+
+        if (usLogado instanceof Admin) {
+            binding.bMenuViagens.setText("Painel de Viagens");
+        } else {
+            binding.bMenuViagens.setText("Minhas Viagens");
+        }
 
         // programando o clique nos botões
         binding.bMenuViagens.setOnClickListener(new View.OnClickListener() {

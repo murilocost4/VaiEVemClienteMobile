@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
 
             // Tentando estabelecer a conexão
             try {
-                resultado = conexaoController.criaConexaoServidor("192.168.2.113", 12345);
+                resultado = conexaoController.criaConexaoServidor("192.168.210.13", 12345);
             } catch (Exception e) {
                 e.printStackTrace();
                 resultado = false;
@@ -108,6 +108,8 @@ public class LoginFragment extends Fragment {
 
             // Criptografando a senha
             String senhaCriptografada = Criptografia.criptografarSenha(senha);
+            Log.d("Senha", senha);
+            Log.d("Cripto", senhaCriptografada);
 
             // Mostrando indicador de progresso
             ProgressDialog progressDialog = new ProgressDialog(getContext());
