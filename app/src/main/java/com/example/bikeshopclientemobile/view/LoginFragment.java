@@ -68,7 +68,7 @@ public class LoginFragment extends Fragment {
 
             // Tentando estabelecer a conexão
             try {
-                resultado = conexaoController.criaConexaoServidor("192.168.210.13", 12345);
+                resultado = conexaoController.criaConexaoServidor("192.168.2.113", 12345);
             } catch (Exception e) {
                 e.printStackTrace();
                 resultado = false;
@@ -118,7 +118,7 @@ public class LoginFragment extends Fragment {
             // Iniciando autenticação em uma thread separada
             new Thread(() -> {
                 ConexaoController conexaoController = new ConexaoController(informacoesViewModel);
-                Usuario usuarioLogado = conexaoController.efetuarLogin(new Usuario(email, senha));
+                Usuario usuarioLogado = conexaoController.efetuarLogin(new Usuario(email, senhaCriptografada));
 
                 // Atualizando a UI na thread principal
                 getActivity().runOnUiThread(() -> {
