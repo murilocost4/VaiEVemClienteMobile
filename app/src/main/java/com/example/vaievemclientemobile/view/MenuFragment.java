@@ -74,6 +74,10 @@ public class MenuFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.acao_menuFragment_to_loginFragment);
         });
 
+        binding.bAlterarSenha.setOnClickListener(event -> {
+            Navigation.findNavController(view).navigate(R.id.action_menuFragment_to_alteraSenhaFragment);
+        });
+
     }
 
     @Override

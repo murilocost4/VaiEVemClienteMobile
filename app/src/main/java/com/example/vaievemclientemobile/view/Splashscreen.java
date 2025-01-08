@@ -28,12 +28,6 @@ public class Splashscreen extends Fragment {
         View view = inflater.inflate(R.layout.fragment_splashscreen, container, false);
 
         // programando o clique nos botões
-        binding.bMenuViagens.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.acao_splashscreen_to_loginFragment);
-            }
-        });
 
         // Temporizador da Splash Screen
         new Handler().postDelayed(() -> {

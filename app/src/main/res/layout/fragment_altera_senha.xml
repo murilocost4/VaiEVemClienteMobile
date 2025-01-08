@@ -5,31 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".view.MenuFragment">
+    android:gravity="center"
+    tools:context=".view.AlteraSenhaFragment">
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Deseja: "
-        android:id="@+id/tvMenuSaudacao"
-        android:textSize="18sp"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="300dp"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Minhas Viagens"
-        android:id="@+id/bMenuViagens"
-        android:backgroundTint="@color/green"
-        android:textColor="@android:color/white"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="Alterar Senha"
-        android:id="@+id/bAlterarSenha"
+        android:textColor="@color/dark_gray"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etSenhaAntiga"
+        android:hint="Senha Antiga"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="16dp"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNovaSenha"
+        android:hint="Senha Nova"
+        android:inputType="textPassword"
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="8dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bSalvar"
+        android:text="Salvar"
         android:backgroundTint="@color/green"
         android:textColor="@android:color/white"/>
-
     <Button
         android:id="@+id/voltar"
         android:layout_width="wrap_content"
@@ -46,4 +58,5 @@
         android:text="Voltar"
         android:textColor="@android:color/white"
         android:textSize="12sp" />
+
 </LinearLayout>

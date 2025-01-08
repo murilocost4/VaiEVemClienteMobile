@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_menuFragment_to_visualizacaoViagemPassageiroFragment"
             app:destination="@id/visualizacaoViagemPassageiroFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_alteraSenhaFragment"
+            app:destination="@id/alteraSenhaFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizacaoBikeFragment"
@@ -54,14 +57,6 @@
         <action
             android:id="@+id/action_acompanhaViagemFragment_to_visualizacaoBikeFragment"
             app:destination="@id/visualizacaoBikeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/splashscreen"
-        android:name="com.example.vaievemclientemobile.view.Splashscreen"
-        android:label="Splashscreen" >
-        <action
-            android:id="@+id/acao_splashscreen_to_loginFragment"
-            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/visualizacaoViagemAdminFragment"
@@ -104,5 +99,14 @@
         <action
             android:id="@+id/action_acompanhaViagemPassageiroFragment_to_visualizacaoViagemPassageiroFragment"
             app:destination="@id/visualizacaoViagemPassageiroFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/alteraSenhaFragment"
+        android:name="com.example.vaievemclientemobile.view.AlteraSenhaFragment"
+        android:label="fragment_altera_senha"
+        tools:layout="@layout/fragment_altera_senha" >
+        <action
+            android:id="@+id/action_alteraSenhaFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
     </fragment>
 </navigation>

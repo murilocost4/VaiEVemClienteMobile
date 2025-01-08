@@ -237,6 +237,42 @@ public class ConexaoController {
         }
         return viagem;
     }
+
+    public boolean alteraSenha(Usuario usr) {
+        String mensagem;
+        boolean resultado;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("UsuarioAlterar");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeObject(usr);
+            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+        } catch (IOException ioe) {
+            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            resultado = false;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            resultado = false;
+        }
+        return resultado;
+    }
+
+    public boolean verificaUsuario(Usuario usr) {
+        String mensagem;
+        boolean resultado;
+        try {
+            informacoesViewModel.getOutputStream().writeObject("verificaUsuario");
+            mensagem = (String) informacoesViewModel.getInputStream().readObject();
+            informacoesViewModel.getOutputStream().writeObject(usr);
+            resultado = (Boolean) informacoesViewModel.getInputStream().readObject();
+        } catch (IOException ioe) {
+            Log.e("VaiEVem","Erro: " + ioe.getMessage());
+            resultado = false;
+        } catch (ClassNotFoundException classe) {
+            Log.e("VaiEVem", "Erro: " + classe.getMessage());
+            resultado = false;
+        }
+        return resultado;
+    }
 }
 
 
